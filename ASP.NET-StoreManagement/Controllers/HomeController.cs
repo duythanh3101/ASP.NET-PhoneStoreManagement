@@ -52,6 +52,25 @@ namespace ASP.NET_StoreManagement.Controllers
             return View();
         }
 
+        public ActionResult Login(FormCollection f)
+        {
+            string UserName = f["UserName"].ToString();
+            string Password = f["Password"].ToString();
 
-    }
+            User user = db.Users.SingleOrDefault(u => u.UserName == UserName && u.Password == Password);
+            if (user != null)
+            {
+                Session["Account"] = user;
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+
+   
+        public ActionResult Logout()
+        {
+            Session["Account"] = null;
+            return RedirectToAction("Index");
+        }
+   }
 }

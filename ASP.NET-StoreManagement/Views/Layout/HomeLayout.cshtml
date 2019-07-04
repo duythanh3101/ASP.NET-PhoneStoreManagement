@@ -2,6 +2,7 @@
 
 <html>
 <head>
+
     <title>New Store A Ecommerce Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title>
     <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -28,7 +29,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
     <!--header-->
     <div class="header">
-        <div class="header-top">
+        @Html.Partial("~/Views/Layout/HeaderTopPartial.cshtml")
+        @*<div class="header-top">
             <div class="container">
                 <div class="search">
                     <form>
@@ -38,8 +40,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="header-left">
                     <ul>
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="register.html">Register</a></li>
+                        <li><a href="@Html.Action("Login", "Home")">Đăng nhập</a></li>
+                        <li><a href="register.html">Đăng xuất</a></li>
 
                     </ul>
                     <div class="cart box_1">
@@ -58,7 +60,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="clearfix"> </div>
             </div>
-        </div>
+        </div>*@
         <div class="container">
             <div class="head-top">
                 <div class="logo">

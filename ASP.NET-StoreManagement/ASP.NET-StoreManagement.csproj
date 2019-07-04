@@ -515,6 +515,7 @@
     <Content Include="Views\Product\ProductDetail.cshtml" />
     <Content Include="Views\Product\ProductListView.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Layout\HeaderTopPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
