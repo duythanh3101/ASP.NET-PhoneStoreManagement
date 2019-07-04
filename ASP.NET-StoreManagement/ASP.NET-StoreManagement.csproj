@@ -131,12 +131,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BasketController.cs" />
     <Compile Include="Controllers\DemoAjaxController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Basket.cs" />
+    <Compile Include="Models\BasketDetail.cs" />
     <Compile Include="Models\Category.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -517,6 +520,9 @@
     <Content Include="Views\Product\ProductListView.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Layout\HeaderTopPartial.cshtml" />
+    <Content Include="Views\Basket\BasketPartial.cshtml" />
+    <Content Include="Views\Basket\BasketView.cshtml" />
+    <Content Include="Views\Basket\Notify.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

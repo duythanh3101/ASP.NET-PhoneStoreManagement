@@ -1,0 +1,12 @@
+﻿<div class="cart box_1">
+    <a href="@Url.Action("BasketView", "Basket")">
+        <h3>
+            <div class="total">
+                @ViewBag.TotalPrice.ToString("#,##") VNĐ(<span>@ViewBag.Amount</span> items)
+            </div>
+            <img src="~/Content/images/cart.png" alt="">
+        </h3>
+    </a>
+    <p><a href="@Url.Action("BasketView", "Basket")" class="simpleCart_empty">Empty Cart</a></p>
+
+</div>

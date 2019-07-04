@@ -1,0 +1,36 @@
+﻿@using ASP.NET_StoreManagement.Models;
+@model List<BasketDetail>
+
+@{
+    ViewBag.Title = "BasketView";
+    Layout = "~/Views/Layout/ProductDetailLayout.cshtml";
+}
+
+@if (Model == null)
+{
+    <h3 style="color:red;">Giỏ hàng rỗng</h3>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <td>Mã SP</td>
+            <td>Tên SP</td>
+            <td>Hình ảnh</td>
+            <td>Số lượng</td>
+            <td>Đơn giá</td>
+            <td>Tổng</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.DisplayName</td>
+                <td><img src="@Url.Content("~/Content/HinhAnhSP/" + item.Image)" width="50" height="50"/></td>
+                <td>@item.Amount</td>
+                <td>@item.UnitPrice.ToString("#,##") VNĐ</td>
+                <td>@item.Total.ToString("#,##") VNĐ</td>
+            </tr>
+        }
+    </table>
+}

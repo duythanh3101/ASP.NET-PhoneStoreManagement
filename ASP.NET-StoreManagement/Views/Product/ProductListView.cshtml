@@ -7,7 +7,7 @@
 }
 <div class="col-md-9 product1">
     <div class=" bottom-product">
-        @foreach (var item in Model)
+        @foreach (var item in Model.OrderBy(d=>d.UnitPrice))
         {
             <div class="col-md-4 bottom-cd simpleCart_shelfItem">
                 <div class="product-at ">
@@ -20,7 +20,9 @@
                     </a>
                 </div>
                 <p class="tun">@item.DisplayName</p>
-                <a href="#" class="item_add"><p class="number item_price"><i> </i>@item.UnitPrice.Value.ToString("#,##")</p></a>
+                <a href="@Url.Action("AddProduct", "Basket",
+                        new { @Id = item.Id,
+                               @directURL = Request.Url.ToString()})" class="item_add"><p class="number item_price"><i> </i>@item.UnitPrice.Value.ToString("#,##")</p></a>
             </div>
         }
 
