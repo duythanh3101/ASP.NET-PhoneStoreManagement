@@ -1,4 +1,7 @@
 ﻿@using CaptchaMvc.HtmlHelpers
+@using ASP.NET_StoreManagement.Models
+@model User
+
 @{
     ViewBag.Title = "Register";
     Layout = "~/Views/Layout/ProductDetailLayout.cshtml";
@@ -11,11 +14,15 @@
         <h1>Đăng ký thành viên</h1>
         @using (Html.BeginForm())
         {
+            @Html.AntiForgeryToken()
+            <hr />
+            @Html.ValidationSummary(true)
             <div class="col-md-6 register-top-grid">
                 <h3>Thông tin cá nhân</h3>
                 <div>
                     <span>Tài khoản</span>
-                    @Html.TextBox("UserName")
+                    @Html.TextBoxFor(model => model.UserName)
+                    @Html.ValidationMessageFor(model =>model.UserName)
                 </div>
                 <div>
                     <span>Họ tên</span>

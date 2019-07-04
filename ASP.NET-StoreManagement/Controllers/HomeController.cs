@@ -42,9 +42,16 @@ namespace ASP.NET_StoreManagement.Controllers
         {
             if (this.IsCaptchaValid("Validate your captcha"))
             {
-                ViewBag.Notify = "Thêm thành công";
-                db.Users.Add(user);
-                db.SaveChanges();
+                if (ModelState.IsValid)
+                {
+                    ViewBag.Notify = "Thêm thành công";
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    ViewBag.Notify = "Thêm thất bại";
+                }                
                 return View();
             }
             ViewBag.Notify = "Thêm thất bại";
@@ -61,9 +68,9 @@ namespace ASP.NET_StoreManagement.Controllers
             if (user != null)
             {
                 Session["Account"] = user;
-                return RedirectToAction("Index");
+                return Content("<script>window.location.reload();</script>");
             }
-            return RedirectToAction("Index");
+            return Content("Tài khoản hoặc mật khẩu không đúng");
         }
 
    

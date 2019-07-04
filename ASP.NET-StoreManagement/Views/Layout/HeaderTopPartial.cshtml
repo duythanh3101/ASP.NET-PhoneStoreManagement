@@ -19,7 +19,7 @@
                 else
                 {
                     <li><a id="btnDangNhap" href="#">Đăng nhập</a></li>
-                    <li><a href="register.html">Đăng ký</a></li>
+                    <li><a href="@Url.Action("Register", "Home")">Đăng ký</a></li>
                 }
 
 
@@ -54,7 +54,7 @@
             <span id="close-form" class="btn btn-danger">X</span>
         </div>
         <div class="header-left-bottom">
-            @using (Html.BeginForm("Login", "Home"))
+            @using (Ajax.BeginForm("Login", "Home", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId= "LoginNotify" }))
             {
                 <div class="icon1">
                     <span class="fa fa-user"></span>
@@ -63,6 +63,9 @@
                 <div class="icon1">
                     <span class="fa fa-lock"></span>
                     <input id="txtMatKhau" name="Password" type="password" placeholder="Mật khẩu" required="">
+                </div>
+                <div>
+                    <label style="color:red; font-size:15px;" id="LoginNotify"></label>
                 </div>
                 <div class="login-check">
                     <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> Keep me logged in</label>
@@ -148,7 +151,7 @@
     //    }
     //});
     $("#btnLogin").click(function () {
-        alert($("#txtTaiKhoan").val());
+        
         return;
     });
 </script>
