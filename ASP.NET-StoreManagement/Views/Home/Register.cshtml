@@ -1,0 +1,65 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Layout/ProductDetailLayout.cshtml";
+}
+
+
+
+<div class="DangKy">
+    <div class=" register">
+        <h1>Đăng ký thành viên</h1>
+        @using (Html.BeginForm())
+        {
+            <div class="col-md-6 register-top-grid">
+                <h3>Thông tin cá nhân</h3>
+                <div>
+                    <span>Tài khoản</span>
+                    @Html.TextBox("UserName")
+                </div>
+                <div>
+                    <span>Họ tên</span>
+                    @Html.TextBox("FullName")
+                </div>
+                <div>
+                    <span>Địa chỉ</span>
+                    @Html.TextBox("Address")
+                </div>
+                <div>
+                    <span>Email </span>
+                    @Html.TextBox("Email")
+                </div>
+                <div>
+                    <span>Điện thoại </span>
+                    @Html.TextBox("PhoneNumber")
+                </div>
+            </div>
+            <div class="col-md-6 register-bottom-grid register-top-grid">
+                <h3>Thông tin đăng nhập</h3>
+                <div>
+                    <span>Mật khẩu</span>
+                    @Html.Password("Password")
+                </div>
+                <div>
+                    <span>Nhập lại mật khẩu</span>
+                    @Html.Password("RepeatedPassword")
+                </div>
+                <div>
+                    <span>Câu hỏi bí mật</span>
+                    @Html.TextBox("Question")
+                </div>
+                <div>
+                    <span>Câu trả lời</span>
+                    @Html.TextBox("Answer")
+                </div>
+                <div>
+                    @Html.MathCaptcha()
+                </div>
+
+                <input value="Xác nhận" type="submit">
+            </div>
+            <div class="clearfix"> </div>
+        }
+    </div>
+</div>
+<h1 style="color:red;"> @ViewBag.Notify</h1>

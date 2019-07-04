@@ -1,0 +1,36 @@
+﻿@using ASP.NET_StoreManagement.Models
+@model IEnumerable<Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+@{
+    IEnumerable<Product> listPhones = ViewBag.ListPhones;
+    IEnumerable<Product> listLaptops = ViewBag.ListLaptops;
+    IEnumerable<Product> listTablets = ViewBag.ListTablets;
+}
+
+<div class="content-top">
+    <h1>Điện thoại mới nhất </h1>
+    <div class="grid-in">
+        <div class="container">
+            @Html.Partial("~/Views/Product/ProductFirstStylePartial.cshtml", listPhones)
+        </div>
+    </div>
+
+    <h1>Máy vi tính xách tay mới nhất </h1>
+    <div class="grid-in">
+        <div class="container">
+            @Html.Partial("~/Views/Product/ProductSecondStylePartial.cshtml", listLaptops)
+        </div>
+    </div>
+
+    <h1>Máy tính bảng mới nhất</h1>
+    <div class="grid-in">
+        @*Máy tính bảng*@
+        <div class="container">
+            @Html.Partial("~/Views/Product/ProductFirstStylePartial.cshtml", listTablets)
+        </div>
+    </div>
+</div>

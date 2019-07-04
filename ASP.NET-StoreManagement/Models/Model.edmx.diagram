@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="64ce65d48f744067a8d2ad5a0e307fdc" Name="Diagram1" ZoomLevel="62">
+        <EntityTypeShape EntityType="DBStoreManagmentModel.Category" Width="1.5" PointX="0.75" PointY="1.625" />
+        <EntityTypeShape EntityType="DBStoreManagmentModel.Comment" Width="1.5" PointX="8.25" PointY="4.875" />
+        <EntityTypeShape EntityType="DBStoreManagmentModel.Customer" Width="1.5" PointX="0.75" PointY="15.625" />
+        <EntityTypeShape EntityType="DBStoreManagmentModel.InputDetail" Width="1.5" PointX="5.25" PointY="7.25" />
+        <EntityTypeShape EntityType="DBStoreManagmentModel.Input" Width="1.5" PointX="3" PointY="11.875" />
+        <EntityTypeShape EntityType="DBStoreManagmentModel.Manufacturer" Width="1.5" PointX="0.75" PointY="8.375" />
+        <EntityTypeShape EntityType="DBStoreManagmentModel.OrderDetail" Width="1.5" PointX="5.25" PointY="3.625" />
+        <EntityTypeShape EntityType="DBStoreManagmentModel.Order" Width="1.5" PointX="3" PointY="15.625" />
+        <EntityTypeShape EntityType="DBStoreManagmentModel.Product" Width="1.5" PointX="3" PointY="2.875" />
+        <EntityTypeShape EntityType="DBStoreManagmentModel.Supplier" Width="1.5" PointX="0.75" PointY="4.625" />
+        <EntityTypeShape EntityType="DBStoreManagmentModel.User" Width="1.5" PointX="1.5" PointY="19.25" />
+        <EntityTypeShape EntityType="DBStoreManagmentModel.UserType" Width="1.5" PointX="1.5" PointY="24" />
+        <AssociationConnector Association="DBStoreManagmentModel.FK__Products__Catego__20C1E124" />
+        <AssociationConnector Association="DBStoreManagmentModel.FK__Comments__Produc__36B12243" />
+        <AssociationConnector Association="DBStoreManagmentModel.FK__Comments__UserId__37A5467C" />
+        <AssociationConnector Association="DBStoreManagmentModel.FK__Customers__UserI__239E4DCF" />
+        <AssociationConnector Association="DBStoreManagmentModel.FK__Orders__Customer__300424B4" />
+        <AssociationConnector Association="DBStoreManagmentModel.FK__InputDeta__Input__2C3393D0" />
+        <AssociationConnector Association="DBStoreManagmentModel.FK__InputDeta__Produ__2D27B809" />
+        <AssociationConnector Association="DBStoreManagmentModel.FK__Inputs__IsDelete__29572725" />
+        <AssociationConnector Association="DBStoreManagmentModel.FK__Products__Manufa__1FCDBCEB" />
+        <AssociationConnector Association="DBStoreManagmentModel.FK__OrderDeta__Order__32E0915F" />
+        <AssociationConnector Association="DBStoreManagmentModel.FK__OrderDeta__Produ__33D4B598" />
+        <AssociationConnector Association="DBStoreManagmentModel.FK__Products__Suppli__1ED998B2" />
+        <AssociationConnector Association="DBStoreManagmentModel.FK__Users__UserTypeI__1BFD2C07" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

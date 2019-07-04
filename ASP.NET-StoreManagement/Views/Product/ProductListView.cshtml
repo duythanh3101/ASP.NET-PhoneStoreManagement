@@ -1,0 +1,32 @@
+﻿@using ASP.NET_StoreManagement.Models
+@model IEnumerable<Product>
+
+@{
+    ViewBag.Title = "ProductListView";
+    Layout = "~/Views/Layout/ProductDetailLayout.cshtml";
+}
+<div class="col-md-9 product1">
+    <div class=" bottom-product">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 bottom-cd simpleCart_shelfItem">
+                <div class="product-at ">
+                    <a href="single.html">
+                        <img class="img-responsive" src="@Url.Content("~/Content/HinhAnhSP/" + item.Image)" alt=""
+                             style="width:150px;height:150px">
+                        <div class="pro-grid">
+                            <span class="buy-in">Thêm vào giỏ</span>
+                        </div>
+                    </a>
+                </div>
+                <p class="tun">@item.DisplayName</p>
+                <a href="#" class="item_add"><p class="number item_price"><i> </i>@item.UnitPrice.Value.ToString("#,##")</p></a>
+            </div>
+        }
+
+        <div class="clearfix"> </div>
+    </div>
+    
+
+</div>
+

@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "DemoAjax";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+<h2>DemoAjax</h2>
+@Ajax.ActionLink("Load using ajax", "ProductPartial", new AjaxOptions
+     {
+         HttpMethod = "GET",
+         UpdateTargetId = "KetQua",
+         InsertionMode = InsertionMode.InsertAfter,
+         LoadingElementId = "divLoading"
+
+     });
+
+<div class="container">
+    <div class="content-top">
+
+
+        <div id="KetQua" style="height:150px;">
+
+        </div>
+
+        <div id="divLoading" style="display:none" ;>
+            <img src="~/Content/images/animatedTrapezoids.gif" />
+        </div>
+    </div>
+</div>

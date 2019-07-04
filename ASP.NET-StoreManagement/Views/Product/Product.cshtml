@@ -1,0 +1,25 @@
+﻿@using ASP.NET_StoreManagement.Models
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+<h2>Product</h2>
+@{
+    IEnumerable<Product> lstLT = ViewBag.ListSP;
+    IEnumerable<Product> lstDT = ViewBag.ListDT;
+    }
+
+<div class="container">
+    <div class="content-top">
+        <h1>Laptop mới</h1>
+        @Html.Partial("ProductPartialView", lstLT);
+     </div>
+</div>
+
+<div class="container">
+    <div class="content-top">
+        <h1>Điện thoại mới</h1>
+        @Html.Partial("ProductPartialView", lstDT);
+    </div>
+</div>
