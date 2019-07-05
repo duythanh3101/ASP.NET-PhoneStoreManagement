@@ -68,7 +68,7 @@ namespace ASP.NET_StoreManagement.Controllers
             if (user != null)
             {
                 Session["Account"] = user;
-                return Content("<script>window.location.reload();</script>");
+                return Content("<script type=\"text/javascript\">window.location.reload();</script>");
             }
             return Content("Tài khoản hoặc mật khẩu không đúng");
         }

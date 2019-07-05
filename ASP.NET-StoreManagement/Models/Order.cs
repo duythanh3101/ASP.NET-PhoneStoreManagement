@@ -27,6 +27,8 @@ namespace ASP.NET_StoreManagement.Models
         public Nullable<bool> IsPaid { get; set; }
         public Nullable<int> CustomerId { get; set; }
         public Nullable<int> Promotion { get; set; }
+        public Nullable<bool> IsCancelled { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
     
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -26,11 +26,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- start menu -->
     <link href="~/Content/css/memenu.css" rel="stylesheet" type="text/css" media="all" />
     <script type="text/javascript" src="~/Content/js/memenu.js"></script>
-    <script>$(document).ready(function(){$(".memenu").memenu();});</script>
+    <script>$(document).ready(function () { $(".memenu").memenu(); });</script>
 
 
     <script src="~/Content/js/main.js"></script>
     <script src="~/Content/js/simpleCart.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
 </head>
 <body>
     <!--header-->
@@ -72,7 +74,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="container">
             <div class="head-top">
                 <div class="logo">
-                    <a href="index.html"><img src="~/Content/images/logo.png" alt=""></a>
+                    <a href="@Url.Action("Index", "Home")"><img src="~/Content/images/logo.png" alt=""></a>
                 </div>
                 @Html.Action("MenuPartialView", "Home")
                 <div class="clearfix"> </div>
@@ -479,7 +481,7 @@ $(window).load(function() {
             </div>
         </div>
         <div class="footer-class">
-            <p>© 2015 New store All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+            <p>© 2019 New store All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
         </div>
     </div>
 </body>

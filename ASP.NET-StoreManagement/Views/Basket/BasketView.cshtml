@@ -6,7 +6,7 @@
     Layout = "~/Views/Layout/ProductDetailLayout.cshtml";
 }
 
-@if (Model == null)
+@if (Model == null || Model.Count == 0)
 {
     <h3 style="color:red;">Giỏ hàng rỗng</h3>
 }
@@ -26,11 +26,100 @@ else
             <tr>
                 <td>@item.Id</td>
                 <td>@item.DisplayName</td>
-                <td><img src="@Url.Content("~/Content/HinhAnhSP/" + item.Image)" width="50" height="50"/></td>
+                <td><img src="@Url.Content("~/Content/HinhAnhSP/" + item.Image)" width="50" height="50" /></td>
                 <td>@item.Amount</td>
                 <td>@item.UnitPrice.ToString("#,##") VNĐ</td>
                 <td>@item.Total.ToString("#,##") VNĐ</td>
+                <td>
+                    @Html.ActionLink("Sửa", "UpdateProduct", new { Id = item.Id })
+                    @Html.ActionLink("Xóa", "DeleteProduct", new { Id = item.Id })
+                </td>
             </tr>
         }
     </table>
+
+    using (Html.BeginForm("Order", "Basket"))
+    {
+        if (Session["Account"] == null)
+        {
+            @*Thiết kế form lưu thông tin khách hàng đối với vãng lai (Khách chưa có tài khoản)*@
+            <div class="OrderInformation">
+                <table align="center" class="table">
+                    <tr>
+                        <td align="center" colspan="2"><b>Thông tin khách hàng</b></td>
+                    </tr>
+                    <tr>
+                        <td>Họ tên</td>
+                        <td>
+                            @Html.TextBox("DisplayName")
+                            <p style="color:red;" id="Notify_DisplayName"></p>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            Địa chỉ
+                        </td>
+                        <td>
+                            @Html.TextArea("Address")
+                            <p style="color:red;" id="Notify_Address"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>
+                            @Html.TextBox("Email")
+                            <p style="color:red;" id="Notify_Email"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Điện thoại</td>
+                        <td>@Html.TextBox("PhoneNumber")</td>
+                    </tr>
+                    <tr></tr>
+                </table>
+
+            </div>
+
+            @*Kiểm validation thông qua jquery*@
+            <script type="text/javascript">
+                $("#btnOrder").click(function () {
+                    var loi = 0;
+                    if ($("#DisplayName").val() == "") {
+                        $("#Notify_DisplayName").text("Tên khách hàng không được bỏ trống");
+                        loi++;
+                    }
+                    else {
+                        $("#Notify_DisplayName").text("");
+                    }
+
+                    if ($("#Address").val() == "") {
+                        $("#Notify_Address").text("Địa chỉ không được bỏ trống");
+                        loi++;
+                    }
+                    else {
+                        $("#Notify_Address").text("");
+                    }
+                    var loi;
+                    dinhdang = /^[0-9A-Za-z]+[0-9A-Za-z_]*@@[\w\d.]+\.\w{2,4}$/;
+                    KTemail = dinhdang.test($('#Email').val());
+                    if (!KTemail) {
+                        $('#Notify_Email').text("Email không hợp lệ !");
+                        loi++;
+                    }
+                    if (loi != 0) {
+                        //Ngăn sự kiện submit đến server
+                        return false;
+                    }
+
+                });
+            </script>
+
+
+        }
+        <div class="divDatHang" style="text-align:right;">
+            <input type="submit" value="Đặt hàng" class="btn btn-danger" id="btnOrder" />
+            @Html.ActionLink("Mua tiếp", "Index", "Home", null, new { @class = "btn btn-success" })
+        </div>
+    }
 }

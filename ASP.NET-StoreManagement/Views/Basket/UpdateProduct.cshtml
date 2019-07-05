@@ -1,0 +1,57 @@
+﻿@using ASP.NET_StoreManagement.Models;
+@model BasketDetail
+
+@{
+    ViewBag.Title = "UpdateProduct";
+    Layout = "~/Views/Layout/ProductDetailLayout.cshtml";
+}
+
+@{ 
+    List<BasketDetail> basket = ViewBag.Basket as List<BasketDetail>;
+}
+
+<table class="table">
+    <tr>
+        <td>Mã SP</td>
+        <td>Tên SP</td>
+        <td>Hình ảnh</td>
+        <td>Số lượng</td>
+        <td>Đơn giá</td>
+        <td>Tổng</td>
+        <td></td>
+    </tr>
+    @foreach (var item in basket)
+    {
+        if (item.Id == Model.Id)
+        {
+            using (Html.BeginForm("UpdateProduct", "Basket"))
+            {
+                <tr>
+                    <td>@item.Id @Html.Hidden("MaSP", item.Id) </td>
+                    <td>@item.DisplayName</td>
+                    <td><img src="@Url.Content("~/Content/HinhAnhSP/" + item.Image)" width="50" height="50" /></td>
+                    <td>@Html.TextBox("Amount", item.Amount)</td>
+                    <td>@item.UnitPrice.ToString("#,##") VNĐ</td>
+                    <td>@item.Total.ToString("#,##") VNĐ</td>
+                    <td><input type="submit" value="Cập nhật" />@Html.ActionLink("Xóa", "DeleteProduct", new { Id = item.Id })</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.DisplayName</td>
+                <td><img src="@Url.Content("~/Content/HinhAnhSP/" + item.Image)" width="50" height="50" /></td>
+                <td>@item.Amount</td>
+                <td>@item.UnitPrice.ToString("#,##") VNĐ</td>
+                <td>@item.Total.ToString("#,##") VNĐ</td>
+                <td>
+                    @Html.ActionLink("Sửa", "UpdateProduct", new { Id = item.Id })
+                    @Html.ActionLink("Sửa", "UpdateProduct", new { Id = item.Id })
+                            </td>
+            </tr>
+        }
+
+    }
+</table>

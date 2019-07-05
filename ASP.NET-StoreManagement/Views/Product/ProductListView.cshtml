@@ -7,7 +7,7 @@
 }
 <div class="col-md-9 product1">
     <div class=" bottom-product">
-        @foreach (var item in Model.OrderBy(d=>d.UnitPrice))
+        @foreach (var item in Model.OrderBy(d => d.UnitPrice))
         {
             <div class="col-md-4 bottom-cd simpleCart_shelfItem">
                 <div class="product-at ">
@@ -20,12 +20,18 @@
                     </a>
                 </div>
                 <p class="tun">@item.DisplayName</p>
-                <a href="@Url.Action("AddProduct", "Basket",
+                <p class="tun">@item.UnitPrice.Value.ToString("#,##")</p>
+                @*<a href="@Url.Action("AddProduct", "Basket",
                         new { @Id = item.Id,
-                               @directURL = Request.Url.ToString()})" class="item_add"><p class="number item_price"><i> </i>@item.UnitPrice.Value.ToString("#,##")</p></a>
+                               @directURL = Request.Url.ToString()})" class="item_add"><p class="number item_price"><i> </i>@item.UnitPrice.Value.ToString("#,##")</p></a>*@ 
+                @Ajax.ActionLink("Thêm giỏ hàng", "AddProductAjax", "Basket", new { @Id = item.Id, @directURL = Request.Url.ToString() }, new AjaxOptions
+           { HttpMethod = "GET",
+               UpdateTargetId = "divBasketPartial",
+               InsertionMode = InsertionMode.Replace,
+           }, new { @class = "btn btn-success" }) 
             </div>
         }
-
+       
         <div class="clearfix"> </div>
     </div>
     

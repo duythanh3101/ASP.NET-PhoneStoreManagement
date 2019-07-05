@@ -77,13 +77,15 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrderDate" Type="datetime" />
           <Property Name="OrderState" Type="bit" />
           <Property Name="ShipDate" Type="datetime" />
           <Property Name="IsPaid" Type="bit" />
           <Property Name="CustomerId" Type="int" />
           <Property Name="Promotion" Type="int" />
+          <Property Name="IsCancelled" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -521,13 +523,15 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrderDate" Type="DateTime" Precision="3" />
           <Property Name="OrderState" Type="Boolean" />
           <Property Name="ShipDate" Type="DateTime" Precision="3" />
           <Property Name="IsPaid" Type="Boolean" />
           <Property Name="CustomerId" Type="Int32" />
           <Property Name="Promotion" Type="Int32" />
+          <Property Name="IsCancelled" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="Customer" Relationship="DBStoreManagmentModel.FK__Orders__Customer__300424B4" FromRole="Order" ToRole="Customer" />
           <NavigationProperty Name="OrderDetails" Relationship="DBStoreManagmentModel.FK__OrderDeta__Order__32E0915F" FromRole="Order" ToRole="OrderDetail" />
         </EntityType>
@@ -843,6 +847,8 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="DBStoreManagmentModel.Order">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsCancelled" ColumnName="IsCancelled" />
                 <ScalarProperty Name="Promotion" ColumnName="Promotion" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
