@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Net;
+using PagedList;
 
 namespace ASP.NET_StoreManagement.Controllers
 {
@@ -38,7 +39,7 @@ namespace ASP.NET_StoreManagement.Controllers
             return View(pr);
         }
 
-        public ActionResult ProductListView(int? CategoryId, int? ManufacturerId)
+        public ActionResult ProductListView(int? CategoryId, int? ManufacturerId, int? page )
         {
             if (CategoryId == null || ManufacturerId == null)
             {
@@ -50,7 +51,14 @@ namespace ASP.NET_StoreManagement.Controllers
             {
                 return HttpNotFound();
             }
-            return View(list);
+
+            int PageNumber = (page ?? 1); // Current Page Number
+            int PageSize = 12; // Size of products in Page
+
+            ViewBag.CategoryId = CategoryId;
+            ViewBag.ManufacturerId = ManufacturerId;
+
+            return View(list.OrderBy(p => p.Id).ToPagedList(PageNumber, PageSize));
         }
     }
 }

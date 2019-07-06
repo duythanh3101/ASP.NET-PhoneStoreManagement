@@ -1,11 +1,14 @@
-﻿@using ASP.NET_StoreManagement.Models
-@model IEnumerable<Product>
+﻿@using ASP.NET_StoreManagement.Models;
+@using PagedList.Mvc;
+@using PagedList;
+
+@model IPagedList<Product>
 
 @{
     ViewBag.Title = "ProductListView";
     Layout = "~/Views/Layout/ProductDetailLayout.cshtml";
 }
-<div class="col-md-9 product1">
+<div class="col-md-12 product1">
     <div class=" bottom-product">
         @foreach (var item in Model.OrderBy(d => d.UnitPrice))
         {
@@ -15,26 +18,34 @@
                         <img class="img-responsive" src="@Url.Content("~/Content/HinhAnhSP/" + item.Image)" alt=""
                              style="width:150px;height:150px">
                         <div class="pro-grid">
-                            <span class="buy-in">Thêm vào giỏ</span>
+                            @Ajax.RawActionLink(string.Format("<span class=\"buy-in\">Thêm vào giỏ</span>"), "AddProductAjax", "Basket", new { @Id = item.Id, @directURL = Request.Url.ToString() }, new AjaxOptions
+                           {
+                               HttpMethod = "GET",
+                               UpdateTargetId = "divBasketPartial",
+                               InsertionMode = InsertionMode.Replace,
+                           }, null)  
                         </div>
                     </a>
                 </div>
                 <p class="tun">@item.DisplayName</p>
-                <p class="tun">@item.UnitPrice.Value.ToString("#,##")</p>
                 @*<a href="@Url.Action("AddProduct", "Basket",
-                        new { @Id = item.Id,
-                               @directURL = Request.Url.ToString()})" class="item_add"><p class="number item_price"><i> </i>@item.UnitPrice.Value.ToString("#,##")</p></a>*@ 
-                @Ajax.ActionLink("Thêm giỏ hàng", "AddProductAjax", "Basket", new { @Id = item.Id, @directURL = Request.Url.ToString() }, new AjaxOptions
-           { HttpMethod = "GET",
+                    new { @Id = item.Id,
+                           @directURL = Request.Url.ToString()})" class="item_add"><p class="number item_price"><i> </i>@item.UnitPrice.Value.ToString("#,##")</p></a>*@
+                @Ajax.RawActionLink(string.Format("<p class=\"number item_price\"><i> </i>{0}</p>", item.UnitPrice.Value.ToString("#,##")), "AddProductAjax", "Basket", new { @Id = item.Id, @directURL = Request.Url.ToString() }, new AjaxOptions
+           {
+               HttpMethod = "GET",
                UpdateTargetId = "divBasketPartial",
                InsertionMode = InsertionMode.Replace,
-           }, new { @class = "btn btn-success" }) 
+           }, new { @class = "item_add" })
+
             </div>
         }
-       
+
         <div class="clearfix"> </div>
     </div>
-    
+</div>
 
+<div class="divPage">
+    @Html.PagedListPager(Model, page => Url.Action("ProductListView", new {@CategoryId = ViewBag.CategoryId, @ManufacturerId  = ViewBag.ManufacturerId, page = page}), new PagedListRenderOptions() {  DisplayPageCountAndCurrentLocation = true })
 </div>
 

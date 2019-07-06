@@ -3,10 +3,11 @@
 <div class="header-top">
     <div class="container">
         <div class="search">
-            <form>
-                <input type="text" value="Search " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
-                <input type="submit" value="Go">
-            </form>
+            @using (Html.BeginForm("SearchText", "Search", FormMethod.Post))
+            {
+                <input type="text" name="searchText" value="Tìm kiếm ..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                <input type="submit" value="Tìm kiếm">
+            }
         </div>
         <div class="header-left">
             <ul>
@@ -20,7 +21,7 @@
                 {
                     <li><a id="btnDangNhap" href="#">Đăng nhập</a></li>
                     <li><a href="@Url.Action("Register", "Home")">Đăng ký</a></li>
-                }
+                    }
 
 
             </ul>
