@@ -142,6 +142,7 @@
     <Compile Include="Controllers\DemoAjaxController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProductInputManagerController.cs" />
     <Compile Include="Controllers\ProductManagerController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
@@ -168,6 +169,7 @@
     <Compile Include="Models\Manufacturer.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata\Product.cs" />
     <Compile Include="Models\Metadata\User.cs" />
     <Compile Include="Models\Model.Context.cs">
       <AutoGen>True</AutoGen>
@@ -570,11 +572,17 @@
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Search\SearchTextByAjax.cshtml" />
     <Content Include="Views\Layout\AdminLayOut.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\ProductManager\Index.cshtml" />
+    <Content Include="Views\ProductManager\AddProduct.cshtml" />
+    <Content Include="Views\ProductManager\UpdateProduct.cshtml" />
+    <Content Include="Views\ProductManager\DeleteProduct.cshtml" />
+    <Content Include="Views\ProductInputManager\Input.cshtml" />
+    <Content Include="Views\ProductInputManager\ListProductsOutOfStock.cshtml" />
+    <Content Include="Views\ProductInputManager\InputSingleProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ProductManager\" />
+    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

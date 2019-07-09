@@ -9,11 +9,11 @@ namespace ASP.NET_StoreManagement.Controllers
 {
     public class AdminController : Controller
     {
-        DBStoreManagmentEntities db = new DBStoreManagmentEntities();
+        //DBStoreManagmentEntities db = new DBStoreManagmentEntities();
         // GET: Admin
         public ActionResult Index()
         {
-            return View(db.Products);
+            return View();
         }
     }
 }

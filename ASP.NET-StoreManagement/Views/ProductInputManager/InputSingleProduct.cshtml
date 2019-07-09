@@ -1,0 +1,65 @@
+﻿@using ASP.NET_StoreManagement.Models;
+@model Product
+
+@{
+    /**/
+
+    ViewBag.Title = "InputSingleProduct";
+    Layout = "~/Views/Layout/AdminLayOut.cshtml";
+}
+
+
+<legend>Nhập hàng cho sản phẩm <b style="color: rgb(192,0,0)">@Model.DisplayName</b> </legend>
+
+<hr />
+<br />
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="imgSP">
+            <img src="@Url.Content("~/Content/HinhAnhSP/"+Model.Image)" />
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="ttSP">
+            <h3>Hãng sản xuất: @Model.Manufacturer.DisplayName</h3>
+            <h3>Loại sản phẩm: @Model.Category.DisplayName</h3>
+            <h3>Số lượng tồn: @Model.InventoryCount</h3>
+        </div>
+    </div>
+</div>
+<br />
+<fieldset>
+    <legend>Thông tin nhập hàng</legend>
+</fieldset>
+@using (Html.BeginForm("InputSingleProduct", "ProductInputManager"))
+{
+    @Html.Hidden("ProductId", Model.Id)
+    <div class="row">
+        <div class="col-md-4">
+            @{var lstSuppliers = (SelectList)ViewBag.SupplierId;}
+            Nhà cung cấp: @Html.DropDownList("SupplierId", lstSuppliers, new {})
+        </div>
+        <div class="col-md-4">
+            So lượng nhập : @Html.TextBox("Amount")
+        </div>
+        <div class="col-md-4">
+            Đơn giá nhập :@Html.TextBox("Price")
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>
+    <div class="clear right" style="text-align:right;">
+        <br />
+        <input type="submit" class="btn btn-primary" value="Nhập hàng" />
+    </div>
+}
+<style>
+    .imgSP {
+        border: 1px solid #999999;
+        background-color: #fff;
+        padding: 15px;
+    }
+</style>
+

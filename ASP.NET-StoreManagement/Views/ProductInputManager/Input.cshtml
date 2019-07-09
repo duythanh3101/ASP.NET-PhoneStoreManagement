@@ -1,0 +1,111 @@
+﻿@using ASP.NET_StoreManagement.Models;
+@model Input
+
+@{
+    ViewBag.Title = "Input";
+    Layout = "~/Views/Layout/AdminLayOut.cshtml";
+}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+@*date time*@
+<script>
+    $(function () {
+        $(".date").datepicker();
+    });
+</script>
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-2">
+                Nhà cung cấp
+            </div>
+            <div class="col-md-5">
+                @Html.DropDownList("SupplierId", null, new { })
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <br />
+
+        <div class="col-md-12">
+            @*Ngày nhập*@
+            <div class="col-md-2">
+                Ngày nhập
+            </div>
+            <div class="col-md-5">
+                <input name="InputDate" type="text" class="date" />
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <br />
+    <br />
+    <table class="table tableInputDetail">
+       
+            <tr class="trAppend" style="display:none;">
+                <td>
+                    @Html.DropDownList("ListProducts", null, new { @name = "", @class="ddlProductName" })
+                </td>
+                <td>
+                    <input class="txtUnitPrice" name="" type="number" value="0"/>
+                </td>
+                <td>
+                    <input class="txtCount"  name="" type="number" value="0"/>
+                </td>
+                <td>
+                    <input class="btnDelete btn btn-danger" style="width:30px;height:30px" value="-" />
+                </td>
+            </tr>
+            <tr id="trTarget" data-id="-1">
+                <td>Sản phẩm</td>
+                <td>Đơn giá nhập</td>
+                <td>Số lượng</td>
+                <td></td>
+            </tr>
+     
+    </table>
+
+    <input type="button" value="+" class="btn btn-success" id="btnAdd" />
+    <input type="submit" value="Nhập hàng" class="btn btn-primary" id="btnAddProductInput" />
+}
+
+<script type="text/javascript">
+
+    $("#btnAdd").click(function () {
+        var lastId = $(".tableInputDetail").find("tr:last-child").attr("data-id");
+        var nextPosition = parseInt(lastId) + 1;
+        var tdContent = $(".trAppend").html();
+        var content = "<tr class=\"trAppended\" data-id=\"" + nextPosition + "\">" + tdContent + "</tr>";
+        $('.tableInputDetail').append(content);
+        UpdateId();
+    });
+
+    $("body").delegate(".btnDelete", "click", function () {
+        $(this).closest("tr").remove();
+        UpdateId();
+    })
+
+    function UpdateId() {
+       
+        var lastId = $(".tableInputDetail").find("#trTarget").attr("data-id");
+        var nextPosition = parseInt(lastId) + 1;
+
+        $(".trAppended").each(function () {
+            $(this).attr("data-id", nextPosition);
+            var nameProduct = "[" + nextPosition + "].ProductId";
+            var nameCount = "[" + nextPosition + "].Amount";
+            var nameUnitPrice = "[" + nextPosition + "].Price";
+            $(this).find(".ddlProductName").attr("name", nameProduct);
+            $(this).find(".txtCount").attr("name", nameCount);
+            $(this).find(".txtUnitPrice").attr("name", nameUnitPrice);
+            nextPosition++;
+        });
+    }
+
+
+</script>

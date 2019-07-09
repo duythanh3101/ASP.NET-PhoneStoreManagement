@@ -2,13 +2,17 @@
 @model IEnumerable<Product>
 
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Index";
-                Layout = "~/Views/Layout/AdminLayOut.cshtml";
-                WebGrid grid = new WebGrid(source: Model, rowsPerPage: 5);
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/AdminLayOut.cshtml";
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 5);
 }
+<div class="btnAddNewProduct" style="text-align:right;">
+    @Html.ActionLink("Thêm sản phẩm", "AddProduct", "ProductManager", null, new { @class = "btn btn-success" })
+</div>
 
+<hr/>
 
 @grid.GetHtml(
     tableStyle: "gridTable",
@@ -19,11 +23,11 @@
     columns: grid.Columns(
         grid.Column("Id", "Mã sản phẩm"),
         grid.Column("DisplayName", "Tên sản phẩm"),
-        grid.Column("Description", "Mô tả", format: p => Html.Raw(p.Description)),
-        grid.Column("Image", "Hình ảnh", format: p => Html.Raw("<img src=\"../Content/HinhAnhSP/" + p.Image + "\"/>"))
+        grid.Column("Image", "Hình ảnh", format: p => Html.Raw("<img src=\"../Content/HinhAnhSP/" + p.Image + "\" width=\"150\" height=\"100\"/>")),
+        grid.Column(format: p => @Html.ActionLink("Chỉnh sửa", "UpdateProduct", new { Id = p.Id })),
+        grid.Column(format: p => @Html.ActionLink("Xóa", "DeleteProduct", new { Id = p.Id }))
         )
         )
-
 
 @*Css cho từng Style của table*@
 <style>
@@ -40,6 +44,7 @@
     .gridHeader {
         background-color: Green;
     }
+
         .gridHeader a {
             color: #fff;
         }
@@ -47,8 +52,6 @@
     .gridFooter {
         font-weight: bold;
     }
-    
-
 </style>
 
 <style>

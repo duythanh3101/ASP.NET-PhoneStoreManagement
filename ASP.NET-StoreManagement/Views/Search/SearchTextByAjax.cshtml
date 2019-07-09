@@ -18,28 +18,28 @@
             count++;
             <div class="@Url.Content("col-md-4 bottom-cd simpleCart_shelfItem Page" + pageCount.ToString())">
                 <div class="product-at ">
-                    <a href="single.html">
+                    <a href="#">
                         <img class="img-responsive" src="@Url.Content("~/Content/HinhAnhSP/" + item.Image)" alt=""
                              style="width:150px;height:150px">
                         <div class="pro-grid">
-                            @Ajax.RawActionLink(string.Format("<span class=\"buy-in\">Thêm vào giỏ</span>"), "AddProductAjax", "Basket", new { @Id = item.Id, @directURL = Request.Url.ToString() }, new AjaxOptions
+                            @*@Ajax.RawActionLink(string.Format("<span class=\"buy-in\">Thêm vào giỏ</span>"), "AddProductAjax", "Basket", new { @Id = item.Id, @directURL = Request.Url.ToString() }, new AjaxOptions
                             {
                                 HttpMethod = "GET",
                                 UpdateTargetId = "divBasketPartial",
                                 InsertionMode = InsertionMode.Replace,
-                            }, null)
+                            }, null)*@
+                            <span class="buy-in btnAddProduct" data-masp="@item.Id" >Mua ngay</span>                            
                         </div>
                     </a>
                 </div>
                 <p class="tun">@item.DisplayName</p>
-                @Ajax.RawActionLink(string.Format("<p class=\"number item_price\"><i> </i>{0}</p>", item.UnitPrice.Value.ToString("#,##")), "AddProductAjax", "Basket", new { @Id = item.Id, @directURL = Request.Url.ToString() }, new AjaxOptions
-                {
-                   HttpMethod = "GET",
-                   UpdateTargetId = "divBasketPartial",
-                   InsertionMode = InsertionMode.Replace,
-                }, new { @class = "item_add" })
-
-
+                @*@Ajax.RawActionLink(string.Format("<p class=\"number item_price\"><i> </i>{0}</p>", item.UnitPrice.Value.ToString("#,##")), "AddProductAjax", "Basket", new { @Id = item.Id, @directURL = Request.Url.ToString() }, new AjaxOptions
+                    {
+                       HttpMethod = "GET",
+                       UpdateTargetId = "divBasketPartial",
+                       InsertionMode = InsertionMode.Replace,
+                    }, new { @class = "item_add" })*@
+                <a href="#" data-masp="@item.Id" class="item_add btnAddProduct"><p class="number item_price"><i> </i>@item.UnitPrice.Value.ToString("#,##")</p></a>
             </div>
         }
 
@@ -55,13 +55,12 @@
 </div>
 <style>
     .simpleCart_shelfItem {
-        display:none;
+        display: none;
     }
 
-    .Page1{
-        display:block;
+    .Page1 {
+        display: block;
     }
-   
 </style>
 
 <script type="text/javascript">
@@ -70,7 +69,22 @@
 
         var pageNum = $(this).attr("data-page");
         $("." + pageNum).show();
+    });
 
 
+    $(".btnAddProduct").click(function () {
+        var Id = $(this).attr("data-masp");
+ 
+        $.ajax({
+            type: 'GET',
+            data: {
+                Id: Id,
+                directURL : ''
+            },
+            url: '@Url.Action("AddProductAjax", "Basket")',
+            success: function (result) {
+                $('#divBasketPartial').html(result);
+            }
+        });
     })
 </script>

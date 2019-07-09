@@ -24,7 +24,7 @@
     }
 </style>
 <div class="col-md-6 men">
-    <a href="single.html" class="b-link-stripe b-animate-go  thickbox">
+    <a href="@Url.Action("ProductDetail", "Product", new { id = Model.ElementAt(0).Id})" class="b-link-stripe b-animate-go  thickbox">
         <img class="img-responsive" src="@Url.Content("~/Content/HinhAnhSP/"+Model.ElementAt(0).Image)" alt="">
         <div class="b-wrapper">
             <h3 class="b-animate b-from-top top-in   b-delay03  text-font-size-10  ">
@@ -37,7 +37,7 @@
 </div>
 <div class="col-md-6">
     <div class="col-md1 ">
-        <a href="single.html" class="b-link-stripe b-animate-go  thickbox">
+        <a href="@Url.Action("ProductDetail", "Product", new { id = Model.ElementAt(1).Id})" class="b-link-stripe b-animate-go  thickbox">
             <img class="img-responsive" src="@Url.Content("~/Content/HinhAnhSP/"+Model.ElementAt(1).Image)" alt="">
             <div class="b-wrapper">
                 <h3 class="b-animate b-from-top top-in1   b-delay03 text-font-size-8  ">
@@ -49,7 +49,7 @@
     </div>
     <div class="col-md2">
         <div class="col-md-6 men1">
-            <a href="single.html" class="b-link-stripe b-animate-go  thickbox">
+            <a href="@Url.Action("ProductDetail", "Product", new { id = Model.ElementAt(2).Id})" class="b-link-stripe b-animate-go  thickbox">
                 <img class="img-responsive" src="@Url.Content("~/Content/HinhAnhSP/"+Model.ElementAt(2).Image)" alt="">
 
                 <div class="b-wrapper">

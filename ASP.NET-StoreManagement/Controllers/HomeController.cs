@@ -14,9 +14,9 @@ namespace ASP.NET_StoreManagement.Controllers
 
         public ActionResult Index()
         {
-            var listPhones = db.Products.Where(p => p.CategoryId == 1 && p.IsNewProduct == 1 && p.IsDeleted == false);
+            var listPhones = db.Products.Where(p => p.CategoryId == 1 && p.IsNewProduct == 1 && p.IsDeleted == false).OrderByDescending(d=>d.Id);
             var listLaptops = db.Products.Where(p => p.CategoryId == 3 && p.IsNewProduct == 1 && p.IsDeleted == false);
-            var listTablets = db.Products.Where(p => p.CategoryId == 2 && p.IsNewProduct == 1 && p.IsDeleted == false);
+            var listTablets = db.Products.Where(p => p.CategoryId == 2 && p.IsNewProduct == 1 && p.IsDeleted == false).OrderByDescending(d => d.Id);
 
             ViewBag.ListPhones = listPhones;
             ViewBag.ListLaptops = listLaptops;
