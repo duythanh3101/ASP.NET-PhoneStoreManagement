@@ -141,6 +141,7 @@
     <Compile Include="Controllers\BasketController.cs" />
     <Compile Include="Controllers\DemoAjaxController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderManagerController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductInputManagerController.cs" />
     <Compile Include="Controllers\ProductManagerController.cs" />
@@ -579,6 +580,10 @@
     <Content Include="Views\ProductInputManager\Input.cshtml" />
     <Content Include="Views\ProductInputManager\ListProductsOutOfStock.cshtml" />
     <Content Include="Views\ProductInputManager\InputSingleProduct.cshtml" />
+    <Content Include="Views\OrderManager\Unpaid.cshtml" />
+    <Content Include="Views\OrderManager\UnDelivery.cshtml" />
+    <Content Include="Views\OrderManager\PaidAndDelivery.cshtml" />
+    <Content Include="Views\OrderManager\ReviewOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,86 @@
+﻿@using ASP.NET_StoreManagement.Models;
+@model Order
+
+@{
+                /**/
+
+                ViewBag.Title = "ReviewOrder";
+                Layout = "~/Views/Layout/AdminLayOut.cshtml";
+}
+
+@{
+    IEnumerable<OrderDetail> list = ViewBag.listOrderDeitals as IEnumerable<OrderDetail>;
+}
+
+<h2>Thông tin đơn hàng <font color="#f65e84">@Model.Customer.DisplayName</font></h2>
+
+<br /><br />
+@using (Html.BeginForm())
+{
+    <div class="orderDetails">
+        <table class="table tableDetail">
+            <tr>
+                <td colspan="4">
+                    <table style="width:100%;">
+                        <tr>
+                            <td>Mã đơn hàng: <b style="color:red;"> @Model.Id @Html.Hidden("Id", @Model.Id)</b></td>
+                            <td>Mã khách hàng: <b style="color:red;"> @Model.Customer.Id</b></td>
+                            <td colspan="2">Tên khách hàng: <b style="color:red;"> @Model.Customer.DisplayName</b></td>
+                        </tr>
+                        <tr>
+                            <td>Ngày đặt: @Model.OrderDate.Value.ToString("dd/MM/yyyy")</td>
+                            <td>Đã thanh toán: @Html.EditorFor(model => model.IsPaid)</td>
+                            <td colspan="2">Đã giao: @Html.EditorFor(model => model.OrderState)</td>
+
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Sản phẩm</b></td>
+                <td><b>Hình ảnh</b></td>
+                <td><b>Số lượng đặt</b></td>
+                <td><b>Đơn giá đặt</b></td>
+            </tr>
+
+            @foreach (var item in Model.OrderDetails)
+            {
+                <tr>
+                    <td>@item.Product.DisplayName</td>
+                    <td><img width="150" height="100" src="@Url.Content("~/Content/HinhAnhSP/"+item.Product.Image)" /></td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Price.Value.ToString("#,##") đồng</td>
+                </tr>
+            }
+
+            <tr>
+                <td align="right" colspan="4">Tổng số lượng: @Model.OrderDetails.Sum(n => n.Quantity) sản phẩm</td>
+            </tr>
+            <tr>
+                <td align="right" colspan="4">Tổng tiền: @Model.OrderDetails.Sum(n => n.Product.UnitPrice * n.Quantity).Value.ToString("#,##") đồng</td>
+            </tr>
+
+        </table>
+        <br /><br />
+        <input type="button" value="In đơn hàng" id="btnPrintBill" class="btn btn-danger" />
+        <input type="submit" value="Lưu đơn hàng" id="btnSave" class="btn btn-success" />
+    </div>
+}
+
+
+<script type="text/javascript">
+    $('#btnPrintBill').click(function () {
+        var content = '<table>' + $('.tableDetail').html() + '</table>';
+        PrintBill(content);
+    });
+
+    function PrintBill(content) {
+        var printWindow = window.open('', '', 'height=400,width=800');
+        printWindow.document.write('<html><head><title>DIV Contents</title>');
+        printWindow.document.write('</head><body >');
+        printWindow.document.write(content);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
+    }
+</script>
