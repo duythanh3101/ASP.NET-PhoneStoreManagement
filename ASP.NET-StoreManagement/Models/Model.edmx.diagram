@@ -15,7 +15,8 @@
         <EntityTypeShape EntityType="DBStoreManagmentModel.Order" Width="1.5" PointX="6" PointY="20.375" />
         <EntityTypeShape EntityType="DBStoreManagmentModel.Product" Width="1.5" PointX="3" PointY="2.875" />
         <EntityTypeShape EntityType="DBStoreManagmentModel.Supplier" Width="1.5" PointX="0.75" PointY="4.625" />
-        <EntityTypeShape EntityType="DBStoreManagmentModel.User" Width="1.5" PointX="3" PointY="15.25" />
+        <EntityTypeShape EntityType="DBStoreManagmentModel.UserRole" Width="1.5" PointX="5.25" PointY="16" />
+        <EntityTypeShape EntityType="DBStoreManagmentModel.User" Width="1.5" PointX="3" PointY="15.125" />
         <EntityTypeShape EntityType="DBStoreManagmentModel.UserType" Width="1.5" PointX="0.75" PointY="16" />
         <AssociationConnector Association="DBStoreManagmentModel.FK__Products__Catego__20C1E124" />
         <AssociationConnector Association="DBStoreManagmentModel.FK__Comments__Produc__36B12243" />
@@ -29,6 +30,7 @@
         <AssociationConnector Association="DBStoreManagmentModel.FK__OrderDeta__Order__32E0915F" />
         <AssociationConnector Association="DBStoreManagmentModel.FK__OrderDeta__Produ__33D4B598" />
         <AssociationConnector Association="DBStoreManagmentModel.FK__Products__Suppli__1ED998B2" />
+        <AssociationConnector Association="DBStoreManagmentModel.FK__UserRoles__UserI__656C112C" />
         <AssociationConnector Association="DBStoreManagmentModel.FK__Users__UserTypeI__1BFD2C07" />
       </Diagram>
     </edmx:Diagrams>

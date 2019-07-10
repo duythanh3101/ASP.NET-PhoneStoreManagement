@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace ASP.NET_StoreManagement.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProductManagerController : Controller
     {
         DBStoreManagmentEntities db = new DBStoreManagmentEntities();

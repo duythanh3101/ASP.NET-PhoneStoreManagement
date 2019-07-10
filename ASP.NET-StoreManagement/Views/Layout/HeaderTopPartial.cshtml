@@ -15,13 +15,13 @@
                 {
                     User user = (User)Session["Account"];
                     <li><a>Chào @user.FullName</a></li>
-                    <li><a>@Html.ActionLink("Đăng xuất", "Logout", "Home")</a></li>
+                    <li><a>@Html.ActionLink("Đăng xuất", "LogoutAu", "Home")</a></li>
                 }
                 else
                 {
                     <li><a id="btnDangNhap" href="#">Đăng nhập</a></li>
                     <li><a href="@Url.Action("Register", "Home")">Đăng ký</a></li>
-                    }
+                }
 
 
             </ul>
@@ -44,7 +44,7 @@
             <span id="close-form" class="btn btn-danger">X</span>
         </div>
         <div class="header-left-bottom">
-            @using (Ajax.BeginForm("Login", "Home", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId= "LoginNotify" }))
+            @using (Ajax.BeginForm("LoginAu", "Home", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId= "LoginNotify" }))
             {
                 <div class="icon1">
                     <span class="fa fa-user"></span>

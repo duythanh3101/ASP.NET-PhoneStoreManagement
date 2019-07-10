@@ -19,6 +19,7 @@ namespace ASP.NET_StoreManagement.Models
         {
             this.Comments = new HashSet<Comment>();
             this.Customers = new HashSet<Customer>();
+            this.UserRoles = new HashSet<UserRole>();
         }
     
         public int Id { get; set; }
@@ -36,6 +37,8 @@ namespace ASP.NET_StoreManagement.Models
         public virtual ICollection<Comment> Comments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Customer> Customers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserRole> UserRoles { get; set; }
         public virtual UserType UserType { get; set; }
     }
 }

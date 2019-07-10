@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CaptchaMvc.HtmlHelpers;
+using System.Web.Security;
 
 namespace ASP.NET_StoreManagement.Controllers
 {
@@ -73,11 +74,37 @@ namespace ASP.NET_StoreManagement.Controllers
             return Content("Tài khoản hoặc mật khẩu không đúng");
         }
 
-   
+        public ActionResult LoginAu(FormCollection f)
+        {
+            string UserName = f["UserName"].ToString();
+            string Password = f["Password"].ToString();
+
+            User user = db.Users.SingleOrDefault(u => u.UserName == UserName && u.Password == Password);
+            if (user != null)
+            {
+                FormsAuthentication.SetAuthCookie(UserName, false);
+                Session["Account"] = user;
+                return Content("<script type=\"text/javascript\">window.location.reload();</script>");
+            }
+            return Content("Tài khoản hoặc mật khẩu không đúng");
+        }
+
+        public ActionResult LogoutAu()
+        {
+            Session["Account"] = null;
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
         public ActionResult Logout()
         {
             Session["Account"] = null;
             return RedirectToAction("Index");
+        }
+
+        public ActionResult AuthorizationError()
+        {
+            return View();
         }
    }
 }
